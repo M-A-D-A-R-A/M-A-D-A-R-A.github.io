@@ -30,9 +30,9 @@ export const aboutMe: AboutMe = {
   linkedinUsername: "andoriya-nishant",
   twitterUsername: "NishantAndoriy1",
   blogUrl: "/blogs",
-  cvUrl: "/NishantAndoriya.pdf",
+  cvUrl: "/Nishant_Andoriya.pdf",
   institutionUrl: "https://iiitvadodara.ac.in/",
   altName: "nandoriy",
   secretDescription: "Whatever that keeps you from killing yourself is your purpose.",
-  // funDescription:"Asdasd"
+  funDescription:"Asdasd"
 };
