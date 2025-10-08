@@ -1,7 +1,7 @@
-import { EducationEntry } from "@/components/education-entry";
-import { educationData } from "@/data/education";
-import { PublicationEntry } from "@/components/publication-entry";
-import { publicationData } from "@/data/publication";
+// import { EducationEntry } from "@/components/education-entry";
+// import { educationData } from "@/data/education";
+// import { PublicationEntry } from "@/components/publication-entry";
+// import { publicationData } from "@/data/publication";
 import { ProfileSection } from "@/components/profile-section";
 import { aboutMe } from "@/data/aboutme";
 import { NewsEntry } from "@/components/news-entry";
