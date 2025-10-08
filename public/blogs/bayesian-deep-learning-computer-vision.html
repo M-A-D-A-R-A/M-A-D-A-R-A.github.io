@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — First Post</title>
+  <link rel="stylesheet" href="https://latex.vercel.app/style.css" />
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    .container { max-width: 860px; margin: 2rem auto; padding: 0 1rem; }
+
+    /* Header */
+    header.site-header {
+      border-bottom: 1px solid #e6e6e6;
+      background: #fafafa;
+    }
+    .nav-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: .75rem 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { font-weight: 700; text-decoration: none; }
+    nav ul { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+    nav a { text-decoration: none; }
+    /* Mobile: collapse to <details> */
+    .nav-desktop { display: none; }
+    .nav-mobile summary { cursor: pointer; list-style: none; }
+    .nav-mobile summary::-webkit-details-marker { display: none; }
+    .nav-mobile ul { margin-top: .5rem; flex-direction: column; }
+    @media (min-width: 700px) {
+      .nav-desktop { display: block; }
+      .nav-mobile { display: none; }
+    }
+
+    /* Tags */
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; margin: 1.25rem 0 0; }
+    .tag a {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: .9rem;
+    }
+    .tag a:hover { background: #f6f6f6; }
+    footer small { color: #666; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+<h3>Bayesian Deep Learning &amp; Computer Vision</h3>
+  </header>
+
+ <main class="container">
+    
+
+    <section class="center">
+      <figure>
+        <img src="../assets/images/BDL.png" alt="Illustration related to Bayesian Deep Learning" width="600" height="400" loading="lazy" />
+        <figcaption>
+           Input image with exemplary pixel values, filters, and corresponding output with point estimates
+          (left) and probability distributions (right) over weights.
+         <a href="https://arxiv.org/pdf/1806.05978.pdf" target="_blank" rel="noopener noreferrer">Source</a>
+        </figcaption>
+      </figure>
+
+
+      <!-- If you want a full-width version, keep this; otherwise you can remove it
+      <img src="../../../images/BDL.png" alt="Bayesian Deep Learning illustrative graphic" class="w-100" loading="lazy" />
+
+      <div style="margin-top: 0; padding-bottom: 0.75rem;">
+        <small>
+         
+          <a href="https://arxiv.org/pdf/1806.05978.pdf" target="_blank" rel="noopener noreferrer">Source</a>
+        </small>
+      </div>
+    </section> -->
+
+    <p class="lead">
+      <code class="heading">Why Should I Care About Uncertainty?</code>
+    </p>
+
+    <p>
+      If you give me several pictures of cats and dogs—and then you ask me to classify a new cat photo—I should
+      return a prediction with rather high confidence. But if you give me a photo of an ostrich and force my hand to
+      decide if it's a cat or a dog—I’d better return a prediction with very low confidence.
+    </p>
+
+    <p>
+      Understanding what a model does not know is a critical part of many machine learning systems.
+      Today, deep learning algorithms are able to learn powerful representations which can map high dimensional data to
+      an array of outputs. However these mappings are often taken blindly and assumed to be accurate, which is not
+      always the case. In two recent examples this has had disastrous consequences. In May 2016 there was the first
+      fatality from an assisted driving system, caused by the perception system confusing the white side of a trailer
+      for bright sky
+      <a href="https://static.nhtsa.gov/odi/inv/2016/INCLA-PE16007-7876.PDF" target="_blank" rel="noopener noreferrer">[1]</a>.
+    </p>
+
+    <p class="lead">
+      <code class="heading">Types of Uncertainty</code>
+    </p>
+    <p>
+      The first question I’d like to address is: what is uncertainty? There are actually different types of uncertainty,
+      and we need to understand which types are required for different applications. I’m going to discuss the two most
+      important types—epistemic and aleatoric uncertainty.
+    </p>
+
+    <p class="lead">
+      <code class="heading">Epistemic uncertainty</code>
+    </p>
+    <p>
+      Epistemic uncertainty captures our ignorance about which model generated our collected data. This uncertainty can
+      be explained away given enough data, and is often referred to as model uncertainty. Epistemic uncertainty is
+      really important to model for:
+    </p>
+    <ol>
+      <li>Safety-critical applications, because epistemic uncertainty is required to understand examples which are
+        different from training data,</li>
+      <li>Small datasets where the training data is sparse.</li>
+    </ol>
+
+    <p class="lead">
+      <code class="heading">Aleatoric uncertainty</code>
+    </p>
+    <p>
+      Aleatoric uncertainty captures our uncertainty with respect to information which our data cannot explain.
+      For example, aleatoric uncertainty in images can be attributed to occlusions (because cameras can’t see through
+      objects) or lack of visual features or over-exposed regions of an image, etc. It can be explained away with the
+      ability to observe all explanatory variables with increasing precision. Aleatoric uncertainty is very important to
+      model for:
+    </p>
+    <ol>
+      <li>Large data situations, where epistemic uncertainty is mostly explained away,</li>
+      <li>Real-time applications, because we can form aleatoric models as a deterministic function of the input data,
+        without expensive Monte Carlo sampling.</li>
+    </ol>
+
+    <section class="center">
+
+        <figure>
+        <img src="../assets/images/uncertanity.jpg" alt="Illustration related to Bayesian Deep Learning" width="600" height="400" loading="lazy" />
+        <figcaption>
+             <small>
+            Illustrating the difference between aleatoric and epistemic uncertainty for semantic segmentation. You can
+          notice that aleatoric uncertainty captures object boundaries where labels are noisy. The bottom row shows a
+          failure case of the segmentation model, when the model is unfamiliar with the footpath, and the corresponding
+          increased epistemic uncertainty.
+          <a href="https://arxiv.org/pdf/1703.04977.pdf" target="_blank" rel="noopener noreferrer">Source</a>
+          </small>
+        </figcaption>
+      </figure>
+    </section>
+
+    <p class="lead">
+      <code class="heading">How do we do it then?</code>
+    </p>
+
+    <section class="center">
+ <figure>
+        <img src="../assets/images/KL.gif" alt="Illustration related to Bayesian Deep Learning" width="600" height="400" loading="lazy" />
+        <figcaption>
+        <small>
+          Graphical intuition of how we approach working on a Bayesian network as defined by Graves (2011).
+          <a href="https://medium.com/neuralspace/bayesian-convolutional-neural-networks-with-bayes-by-backprop-c84dcaaf086e"
+             target="_blank" rel="noopener noreferrer">Source</a>
+        </small>
+        </figcaption>
+      </figure>
+        
+
+
+    <p>
+      There are many ways to build the Bayesian neural networks (we will ponder over a lot of them in Blog&nbsp;3).
+      However, in this series, we will focus on building a Bayesian CNN using Bayes by Backprop. The exact Bayesian
+      inference on the weights of a neural network is intractable as the number of parameters is very large and the
+      functional form of a neural network does not lend itself to exact integration. So, we approximate the intractable
+      true posterior probability distributions \( p(\mathbf{w}\mid \mathcal{D}) \) with variational probability
+      distributions \( q_\theta(\mathbf{w}\mid \mathcal{D}) \), which comprise the properties of Gaussian distributions
+      \( \mu \in \mathbb{R}^d \) and \( \sigma \in \mathbb{R}^d \), denoted \( \mathcal{N}(\theta \mid \mu, \sigma^2) \),
+      where \( d \) is the total number of parameters defining a probability distribution. The shape of these Gaussian
+      variational posterior probability distributions, determined by their variance \( \sigma^2 \), expresses an
+      uncertainty estimation of every model parameter.
+    </p>
+
+    <h4>Uncertainty for multi-task learning</h4>
+    <p>
+      Next I’m going to discuss an interesting application of these ideas for multi-task learning. Multi-task learning
+      aims to improve learning efficiency and prediction accuracy by learning multiple objectives from a shared
+      representation. It is prevalent in many areas of machine learning, from NLP to speech recognition to computer
+      vision. Multi-task learning is of crucial importance in systems where long computation run-time is prohibitive,
+      such as the ones used in robotics. Combining all tasks into a single model reduces computation and allows these
+      systems to run in real-time.
+    </p>
+    <p>
+      Most multi-task models train on different tasks using a weighted sum of the losses. However, the performance of
+      these models is strongly dependent on the relative weighting between each task’s loss. Tuning these weights by
+      hand is a difficult and expensive process, making multi-task learning prohibitive in practice.
+    </p>
+
+    <section class="center">
+      <iframe
+        class="w-60"
+        height="345"
+        src="https://www.youtube.com/embed/1OaIB-h-0Ws?autoplay=1&mute=1"
+        title="YouTube video player"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </section>
+ <hr />
+    <footer>
+      <small>Tags</small>
+      <ul class="tags" aria-label="Post tags">
+        <li class="tag"><a>Deep Learning</a></li>
+        <li class="tag"><a>Computer vision</a></li>
+        <li class="tag"><a>Uncertainty</a></li>
+      </ul>
+    </footer>
+
+  </main>
+</body>
+</html>
