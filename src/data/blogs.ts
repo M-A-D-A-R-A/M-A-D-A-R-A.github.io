@@ -4,25 +4,29 @@ export interface BlogPost {
   description: string;
   date: string;            // ISO or "YYYY-MM-DD"
   tags?: string[];
+  count?:number
 }
 
 export const blogPosts: BlogPost[] = [
     {
-    title: "Bali-Pass trek & 15,800ft Mystery",
-    description: "This blog is from my recent trek to Bali-pass in Garhwal Himalayas, Uttarakhand, India.",
+    title: "Bali-Pass trek & Black Peak Mystery",
+    description: "My almost lost thru-hike of Bali-Pass ~60 km  trail. A rugged adventure on the high-altitude mountain pass trail in Garhwal Himalayas!",
     date: "2025-05-05",
-    tags:["Trekking","Calculus"]
+    tags:["Trekking","Travel"],
+    count:1526
 
   },
     {
     title:"Bayesian deep learning & Computer Vision",
     description:"Have you ever wondered how Deep learing especially BDL works with many appliaction of Computer Vision. Have a good read!",
     date:"2023-10-01",
-    tags:["CV","Deep learning"]
+    tags:["CV","Deep learning"],
+    count:781
    },
   {
     title: "Introduction",
     description: "This first entry will serve as a brief introduction, as well as an outline of what you can expect to see and read on this platform.",
     date: "2023-09-01",
+    count:272
   }
 ];
