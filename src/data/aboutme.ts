@@ -4,6 +4,7 @@ export interface AboutMe {
   institution: string;
   description: string;
   email: string;
+  mediaUrl:string;
   imageUrl?: string;
   blogUrl?: string;
   cvUrl?: string;
@@ -29,6 +30,7 @@ export const aboutMe: AboutMe = {
   githubUsername: "M-A-D-A-R-A",
   linkedinUsername: "andoriya-nishant",
   twitterUsername: "NishantAndoriy1",
+  mediaUrl:"/media",
   blogUrl: "/blogs",
   cvUrl: "/Nishant_Andoriya.pdf",
   institutionUrl: "https://iiitvadodara.ac.in/",

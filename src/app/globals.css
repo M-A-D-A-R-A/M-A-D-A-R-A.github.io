@@ -31,3 +31,55 @@ body {
 .sans {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tabs button {
+  border: 1px solid #ccc;
+  background: transparent;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.tabs button.active {
+  background: #000;
+  color: #fff;
+}
+
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(53, 12px);
+  gap: 4px;
+}
+
+.day {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: #ebedf0;
+}
+
+.heat-1 { background: #c6e48b; }
+.heat-2 { background: #7bc96f; }
+.heat-3 { background: #239a3b; }
+.heat-4 { background: #196127; }
+
+.heat-empty { background-color: #e5e7eb; } /* neutral gray */
+
+.heat-r-1 { background-color: #dc2626; } /* red */
+.heat-r-2 { background-color: #f97316; } /* orange */
+.heat-r-3 { background-color: #eab308; } /* yellow */
+.heat-r-4 { background-color: #22c55e; } /* green */
+.heat-r-5 { background-color: #15803d; } /* dark green */
+
+
+.heat-empty {
+  background-color: #e5e7eb; /* neutral gray */
+}
+
