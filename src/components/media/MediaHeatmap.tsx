@@ -2,15 +2,10 @@
 
 import { useState } from "react";
 import { MediaEntry } from "@/data/media";
+import { formatYMD, parseYMD } from "@/lib/date";
 
 /* ---------------- utils ---------------- */
 
-function formatYMD(d: Date) {
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`;
-}
 
 const MONTHS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -37,9 +32,17 @@ export default function MediaHeatmap({ entries, onSelectDate }: Props) {
   const [year, setYear] = useState(today.getFullYear());
 
   /* group entries by date */
-  const byDate = entries.reduce<Record<string, MediaEntry[]>>((acc, e) => {
-    acc[e.date] = acc[e.date] || [];
-    acc[e.date].push(e);
+  const byDate = entries.reduce<Record<string, MediaEntry[]>>((acc, entry) => {
+    const start = entry.startDate ?? entry.endDate ?? entry.date;
+    const end = entry.endDate ?? entry.startDate ?? entry.date;
+    if (!start || !end) return acc;
+    const startDate = parseYMD(start);
+    const endDate = parseYMD(end);
+    for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+      const key = formatYMD(d);
+      acc[key] = acc[key] || [];
+      acc[key].push(entry);
+    }
     return acc;
   }, {});
 
@@ -67,6 +70,7 @@ export default function MediaHeatmap({ entries, onSelectDate }: Props) {
       d.getDate() === today.getDate();
 
     const hasEntries = items.length > 0;
+    const overlapCount = items.length;
 
     /* month label at first week column of the month */
     if (d.getMonth() !== lastMonth) {
@@ -86,7 +90,11 @@ export default function MediaHeatmap({ entries, onSelectDate }: Props) {
       <button
         key={dateKey}
         disabled={!hasEntries}
-        title={dateKey}
+        title={
+          hasEntries
+            ? `${dateKey} • ${overlapCount} entr${overlapCount === 1 ? "y" : "ies"}`
+            : dateKey
+        }
         onClick={() => hasEntries && onSelectDate?.(dateKey)}
         className={`
           w-3 h-3 rounded-sm

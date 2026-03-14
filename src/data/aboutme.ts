@@ -30,7 +30,7 @@ export const aboutMe: AboutMe = {
   githubUsername: "M-A-D-A-R-A",
   linkedinUsername: "andoriya-nishant",
   twitterUsername: "NishantAndoriy1",
-  mediaUrl:"/media",
+  mediaUrl:"/Letterboxd",
   blogUrl: "/blogs",
   cvUrl: "/Nishant_Andoriya.pdf",
   institutionUrl: "https://iiitvadodara.ac.in/",
