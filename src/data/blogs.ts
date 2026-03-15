@@ -8,6 +8,14 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: "The Movies & the World beyond Screen",
+    description: "A personal diary-meets-critic essay tracing Bollywood’s timeline and the global films that shaped my taste.",
+    date: "2026-03-16",
+    tags:["Cinema","Bollywood","Personal","Critique","Movies"],
+    count:1500
+
+  },
     {
     title: "Bali-Pass trek & Black Peak Mystery",
     description: "My almost lost thru-hike of Bali-Pass ~60 km  trail. A rugged adventure on the high-altitude mountain pass trail in Garhwal Himalayas!",
