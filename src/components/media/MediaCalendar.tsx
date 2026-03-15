@@ -121,7 +121,7 @@ export default function MediaCalendar({
                 const isRange = start && end && start !== end;
                 const isStart = start === date;
                 const isEnd = end === date;
-                const isInProgress = isRange && !isStart && !isEnd;
+                // const isInProgress = isRange && !isStart && !isEnd;
                 const buttonClassName = isRange
                   ? "group text-left rounded-md overflow-hidden border border-emerald-200 bg-emerald-50/70 hover:bg-emerald-100/80 transition"
                   : "group text-left rounded-md overflow-hidden bg-zinc-50 hover:bg-zinc-100 transition";
