@@ -4,11 +4,9 @@ import {
   Linkedin,
   Mail,
   Twitter,
-  ArrowUpRight,
   GraduationCap,
 } from "lucide-react";
 import { AboutMe } from "@/data/aboutme";
-import Link from "next/link";
 
 interface ProfileSectionProps {
   aboutMe: AboutMe;
@@ -59,61 +57,6 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             aboutMe.institution
           )}
         </p>
-        <div className="flex gap-6 mb-6">
-          {
-            aboutMe.blogUrl &&(
-<Link
-    href={aboutMe.blogUrl}
-    className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-    prefetch
-  >
-    <ArrowUpRight
-      size={12}
-      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-    />
-    <span className="tracking-wider camelcase">Blogs</span>
-  </Link>
-            ) 
-          }
-          {/* <Link
-    href="/blogs"
-    className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-    prefetch
-  >
-    <ArrowUpRight
-      size={12}
-      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-    />
-    <span className="tracking-wider camelcase">Blogs</span>
-  </Link> */}
-          {aboutMe.cvUrl && (
-            <a
-              href={aboutMe.cvUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider camelcase">CV</span>
-            </a>
-          )}
-                    {aboutMe.mediaUrl && (
-            <a
-              href={aboutMe.mediaUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-              rel="noopener noreferrer"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider camelcase">Letterboxd</span>
-            </a>
-          )}
-        </div>
         <div className="space-y-2">
           <a
             href={`mailto:${aboutMe.email}`}
