@@ -39,7 +39,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
           {aboutMe.name}
         </h1>
         {aboutMe.altName && (
-          <p className="text-zinc-600 text-md leading-relaxed tracking-wide mb-6">
+          <p className="text-zinc-600 text-base leading-relaxed tracking-wide mb-6">
             {aboutMe.altName}
           </p>
         )}

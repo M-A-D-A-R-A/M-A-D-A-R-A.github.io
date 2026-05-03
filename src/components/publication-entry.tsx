@@ -34,7 +34,7 @@ export function PublicationEntry({
             </div>
           )}
         </div>
-        <h3 className="font-serif text-md mb-3">{publication.title}</h3>
+        <h3 className="font-serif text-base mb-3">{publication.title}</h3>
         <p className="text-sm text-zinc-600 mb-4">{publication.authors}</p>
         <div className="flex flex-row gap-6">
           {publication.paperUrl && (

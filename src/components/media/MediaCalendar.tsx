@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { MediaEntry } from "@/data/media";
 import { formatYMD, parseYMD } from "@/lib/date";
 
@@ -132,14 +133,15 @@ export default function MediaCalendar({
                     onClick={() => onSelectEntry?.(entry)}
                     className={buttonClassName}
                   >
-                  {entry.image && (!isRange || isStart || isEnd) && (
-                    <img
-                      src={entry.image}
-                      alt={entry.title}
-                      className="w-full h-20 object-cover"
-                      loading="lazy"
-                    />
-                  )}
+                    {entry.image && (!isRange || isStart || isEnd) && (
+                      <Image
+                        src={entry.image}
+                        alt={entry.title}
+                        width={160}
+                        height={80}
+                        className="w-full h-20 object-cover"
+                      />
+                    )}
 
                   <div className="px-2 py-1">
                     <div

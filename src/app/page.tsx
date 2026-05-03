@@ -15,44 +15,33 @@ import { sectionOrder, Section } from "@/data/section-order";
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#FFFCF8]">
-      {/* Don't have a great call on whether max-w-screen-xl is better */}
       <div className="max-w-screen-lg mx-auto px-8 py-24">
-        {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
-          {/* Left Column - Fixed Info */}
           <div className="col-span-12 md:col-span-4 space-y-12 mb-8 md:mb-0">
-            {/* Profile */}
             <div className="md:sticky top-12 space-y-8">
               <ProfileSection aboutMe={aboutMe} />
             </div>
-             
           </div>
 
-          {/* Right Column - Scrolling Content */}
           <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-24">
-            {/* About section is typically first */}
             {aboutMe.description && (
               <section>
-                <p
-                  className="font-serif text-sm leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
-                  dangerouslySetInnerHTML={{ __html: aboutMe.description }}
-                />
+                <p className="font-serif text-sm leading-relaxed text-zinc-700">
+                  {aboutMe.description}
+                </p>
               </section>
             )}
 
-            {/* Map through sectionOrder to render sections in correct order */}
             {sectionOrder.map((sectionName) => {
-              // Most of this is redundant... but in case it needs to be unique.
               switch (sectionName) {
                 case Section.News:
                   return (
                     newsData.length > 0 && (
                       <section key={sectionName}>
-                        
-                        <h2 className="font-serif text-l mb-4 tracking-wide uppercase">
+                        <h2 className="font-serif text-sm mb-4 tracking-wide uppercase">
                           Open Source Contributions
                         </h2>
-                        <hr></hr>
+                        <hr />
                         <div className="space-y-8">
                           {newsData.map((news, index) => (
                             <div key={index}>
@@ -60,7 +49,6 @@ export default function Home() {
                             </div>
                           ))}
                         </div>
-                        
                       </section>
                     )
                   );
@@ -89,10 +77,10 @@ export default function Home() {
                   return (
                     experienceData.length > 0 && (
                       <section key={sectionName}>
-                        <h2 className="font-serif text-md mb-4 tracking-wide uppercase">
+                        <h2 className="font-serif text-sm mb-4 tracking-wide uppercase">
                           Experience
                         </h2>
-                         <hr></hr>
+                        <hr />
                         <div className="space-y-8">
                           {experienceData.map((experience, index) => (
                             <ExperienceEntry
@@ -123,16 +111,15 @@ export default function Home() {
                   return (
                     portfolioData.length > 0 && (
                       <section key={sectionName}>
-                        <h1 className="font-serif text-md mb-4 tracking-wide uppercase">
+                        <h2 className="font-serif text-sm mb-4 tracking-wide uppercase">
                           Featured Projects
-                        </h1>
-                        <hr></hr>
+                        </h2>
+                        <hr />
                         <div className="space-y-8">
                           {portfolioData.map((portfolio, index) => (
                             <PortfolioEntry key={index} portfolio={portfolio} />
                           ))}
                         </div>
-                        
                       </section>
                     )
                   );
