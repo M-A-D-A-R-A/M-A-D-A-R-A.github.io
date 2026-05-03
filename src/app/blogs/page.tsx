@@ -29,6 +29,8 @@ const WORDS_PER_MIN = 220;
 export default function BlogsPage() {
   const posts = [...blogPosts].sort((a, b) => (a.date < b.date ? 1 : -1));
   const tils = [...tilItems].sort((a, b) => (a.date < b.date ? 1 : -1));
+  const latestPosts = posts.slice(0, 4);
+  const latestTils = tils.slice(0, 3);
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-24">
@@ -48,9 +50,18 @@ export default function BlogsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <section className="lg:col-span-2">
-          <h2 className="text-xl font-serif mb-6">Blog</h2>
+          <div className="mb-6 flex items-end justify-between gap-4">
+            <h2 className="text-xl font-serif">Blog</h2>
+            <Link
+              href="/blogs/archive"
+              className="inline-flex items-center gap-1 text-xs uppercase tracking-wider text-zinc-500 hover:text-zinc-900"
+            >
+              View all posts
+              <ArrowUpRight size={12} />
+            </Link>
+          </div>
           <ul className="space-y-6">
-            {posts.map((post) => {
+            {latestPosts.map((post) => {
               const slug = slugify(post.title);
               const href = `/blogs/${slug}.html`;
               const readMinutes =
@@ -115,9 +126,20 @@ export default function BlogsPage() {
         </section>
 
         <aside className="lg:col-span-1">
-          <h2 className="text-xl font-serif mb-4">TIL (Today I Learned)</h2>
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <h2 className="text-xl font-serif">TIL</h2>
+            {tils.length > latestTils.length ? (
+              <Link
+                href="/blogs/til"
+                className="inline-flex items-center gap-1 text-xs uppercase tracking-wider text-zinc-500 hover:text-zinc-900"
+              >
+                Show more
+                <ArrowUpRight size={12} />
+              </Link>
+            ) : null}
+          </div>
           <ol className="space-y-4">
-            {tils.map((item, idx) => (
+            {latestTils.map((item, idx) => (
               <li
                 key={`${item.date}-${idx}`}
                 className="rounded-lg border border-zinc-200 p-4"

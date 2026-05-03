@@ -8,6 +8,12 @@ export interface TIL {
 
 export const tilItems: TIL[] = [
   {
+    date: "2026-05-04",
+    title: "The Uncanny Valley of Silence",
+    description:
+      "For a voice conversation to feel human, the round-trip delay has to stay under about 800ms. Even 50ms of network jitter or a slightly long VAD pause can feel like dead air.",
+  },
+  {
     date: "2025-10-05",
     title: "Petrichor vs Ozone",
     description: "Earthy smell after rain is petrichor; pre-storm sharp scent is ozone.",
