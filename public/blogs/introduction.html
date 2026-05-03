@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blog — First Post</title>
+  <title>Introduction | Nishant Andoriya</title>
+  <meta name="description" content="A short introduction to Nishant Andoriya's blog: tech, GSoC, fitness, anime, CTF notes, and personal experiments." />
   <link rel="stylesheet" href="https://latex.vercel.app/style.css" />
   <style>
     .container { max-width: 860px; margin: 2rem auto; padding: 0 1rem; }
@@ -46,15 +47,23 @@
     .tag a:hover { background: #f6f6f6; }
     footer small { color: #666; }
   </style>
+  <link rel="stylesheet" href="/blogs/blog.css" />
 </head>
 <body>
-  <!-- Header -->
   <header class="site-header">
-<h2>Hi there... 👋</h2>
+    <div class="blog-shell">
+      <nav class="post-nav" aria-label="Post navigation">
+        <a href="/blogs">← All posts</a>
+        <a href="/">Home</a>
+      </nav>
+      <h1>Introduction</h1>
+      <p class="post-meta">Published on Sep 01, 2023</p>
+    </div>
   </header>
 
-  <!-- Main -->
   <main class="container">
+    <article>
+    <h2>Hi there... 👋</h2>
     
     <p>
       Welcome to my blog and first blog post, and thanks for stopping by.
@@ -108,19 +117,19 @@
       See you all in the next read. Till then—<strong>Sayonara ✌️</strong>
     </p>
 
-    <!-- Tags -->
+    </article>
     <hr />
-    <footer>
+    <footer class="post-footer">
       <small>Tags</small>
       <ul class="tags" aria-label="Post tags">
-        <li class="tag"><a>Intro</a></li>
-        <li class="tag"><a >Personal</a></li>
-        <li class="tag"><a >Tech</a></li>
-        <li class="tag"><a >GSoC</a></li>
-        <li class="tag"><a >Fitness</a></li>
-        <li class="tag"><a >Anime</a></li>
-        <li class="tag"><a >CTF</a></li>
-        <li class="tag"><a>Python</a></li>
+        <li class="tag"><span>Intro</span></li>
+        <li class="tag"><span>Personal</span></li>
+        <li class="tag"><span>Tech</span></li>
+        <li class="tag"><span>GSoC</span></li>
+        <li class="tag"><span>Fitness</span></li>
+        <li class="tag"><span>Anime</span></li>
+        <li class="tag"><span>CTF</span></li>
+        <li class="tag"><span>Python</span></li>
       </ul>
     </footer>
   </main>

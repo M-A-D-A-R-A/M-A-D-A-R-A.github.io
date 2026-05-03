@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blog — Bayesian Deep Learning &amp; Computer Vision</title>
+  <title>Bayesian Deep Learning &amp; Computer Vision | Nishant Andoriya</title>
+  <meta name="description" content="A short primer on uncertainty, Bayesian deep learning, and computer vision applications." />
   <link rel="stylesheet" href="https://latex.vercel.app/style.css" />
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
@@ -103,15 +104,23 @@
       color: #666;
     }
   </style>
+  <link rel="stylesheet" href="/blogs/blog.css" />
 </head>
 
 <body class="text-justify">
-  <!-- Header -->
   <header class="site-header">
-    <h3>Bayesian Deep Learning &amp; Computer Vision</h3>
+    <div class="blog-shell">
+      <nav class="post-nav" aria-label="Post navigation">
+        <a href="/blogs">← All posts</a>
+        <a href="/">Home</a>
+      </nav>
+      <h1>Bayesian Deep Learning &amp; Computer Vision</h1>
+      <p class="post-meta">Published on Oct 01, 2023</p>
+    </div>
   </header>
 
   <main class="container">
+    <article>
 
 
     <section class="center">
@@ -124,18 +133,7 @@
           <a href="https://arxiv.org/pdf/1806.05978.pdf" target="_blank" rel="noopener noreferrer">Source</a>
         </figcaption>
       </figure>
-
-
-      <!-- If you want a full-width version, keep this; otherwise you can remove it
-      <img src="../../../images/BDL.png" alt="Bayesian Deep Learning illustrative graphic" class="w-100" loading="lazy" />
-
-      <div style="margin-top: 0; padding-bottom: 0.75rem;">
-        <small>
-         
-          <a href="https://arxiv.org/pdf/1806.05978.pdf" target="_blank" rel="noopener noreferrer">Source</a>
-        </small>
-      </div>
-    </section> -->
+    </section>
 
       <p class="lead">
         <code class="heading">Why Should I Care About Uncertainty?</code>
@@ -156,9 +154,9 @@
         fatality from an assisted driving system, caused by the perception system confusing the white side of a trailer
         for bright sky.
 
-        <label for="sn-anything" class="sidenote-toggle"></label>
-        <input id="sn-anything" class="sidenote-toggle" />
-        <span class="sidenote">An Report from US Department of Transportation.The Automatic Emergency Braking (AEB) or
+        <label for="sn-bdl-aeb" class="sidenote-toggle"></label>
+        <input type="checkbox" id="sn-bdl-aeb" class="sidenote-toggle" />
+        <span class="sidenote">A report from the US Department of Transportation. The Automatic Emergency Braking (AEB) or
           Autopilot systems may not function as
           designed, increasing the risk of a crash.
           <a href="https://static.nhtsa.gov/odi/inv/2016/INCLA-PE16007-7876.PDF" target="_blank"
@@ -250,9 +248,9 @@
         <p>
           There are many ways to build the Bayesian neural networks (we will ponder over a lot of them in Blog&nbsp;3).
           However, in this series, we will focus on building a Bayesian CNN
-          <label for="sn-anything" class="sidenote-toggle"></label>
-          <input id="sn-anything" class="sidenote-toggle" />
-          <span class="sidenote left">Still need to learn more aboyt Bayesian CNN???</span>
+          <label for="sn-bdl-cnn" class="sidenote-toggle"></label>
+          <input type="checkbox" id="sn-bdl-cnn" class="sidenote-toggle" />
+          <span class="sidenote left">Still need to learn more about Bayesian CNN?</span>
           using Bayes by Backprop. The exact Bayesian
           inference on the weights of a neural network is intractable as the number of parameters is very large and the
           functional form of a neural network does not lend itself to exact integration. So, we approximate the
@@ -291,16 +289,17 @@
           <iframe class="w-60" height="345" src="https://www.youtube.com/embed/1OaIB-h-0Ws?autoplay=1&mute=1"
             title="YouTube video player" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
         </section>
+        </section>
+    </article>
         <hr />
-        <footer>
+        <footer class="post-footer">
           <small>Tags</small>
           <ul class="tags" aria-label="Post tags">
-            <li class="tag"><a>Deep Learning</a></li>
-            <li class="tag"><a>Computer vision</a></li>
-            <li class="tag"><a>Uncertainty</a></li>
+            <li class="tag"><span>Deep Learning</span></li>
+            <li class="tag"><span>Computer Vision</span></li>
+            <li class="tag"><span>Uncertainty</span></li>
           </ul>
         </footer>
-
   </main>
 </body>
 
