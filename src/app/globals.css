@@ -71,6 +71,7 @@ body {
 .heat-4 { background: #196127; }
 
 .heat-empty { background-color: #e5e7eb; } /* neutral gray */
+.heat-active { background-color: #71717a; } /* unrated / in progress */
 
 .heat-r-1 { background-color: #dc2626; } /* red */
 .heat-r-2 { background-color: #f97316; } /* orange */
@@ -82,4 +83,3 @@ body {
 .heat-empty {
   background-color: #e5e7eb; /* neutral gray */
 }
-

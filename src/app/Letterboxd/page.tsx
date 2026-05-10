@@ -5,7 +5,7 @@ import MediaHeatmap from "@/components/media/MediaHeatmap";
 import MediaCalendar from "@/components/media/MediaCalendar";
 import { MediaDetailsLeft, MediaDetailsRight } from "@/components/media/MediaDetails";
 import { mediaLog, MediaEntry } from "@/data/media";
-import { parseYMD } from "@/lib/date";
+import { formatYMD, parseYMD } from "@/lib/date";
 
 export default function MediaPage() {
   const sortedEntries = [...mediaLog].sort((a, b) => {
@@ -43,6 +43,25 @@ export default function MediaPage() {
     });
   };
 
+  const findEntryForDate = (date: string) => {
+    const current = parseYMD(date).getTime();
+    const matches = mediaLog.filter(e => {
+      const start = e.startDate ?? e.endDate ?? e.date;
+      const isOngoingBook = e.type === "book" && e.startDate && !e.endDate;
+      const end = e.endDate ?? (isOngoingBook ? formatYMD(new Date()) : e.startDate ?? e.date);
+      if (!start || !end) return false;
+      return current >= parseYMD(start).getTime()
+        && current <= parseYMD(end).getTime();
+    });
+
+    return matches.find(e => e.date === date)
+      ?? matches.sort((a, b) => {
+        const aDate = a.startDate ?? a.date ?? "";
+        const bDate = b.startDate ?? b.date ?? "";
+        return bDate.localeCompare(aDate);
+      })[0];
+  };
+
   return (
     <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-24">
       <h1 className="text-3xl font-serif">Media</h1>
@@ -55,14 +74,7 @@ export default function MediaPage() {
         <MediaHeatmap
           entries={mediaLog}
           onSelectDate={(date) => {
-            const entry = mediaLog.find(e => {
-              const start = e.startDate ?? e.endDate ?? e.date;
-              const end = e.endDate ?? e.startDate ?? e.date;
-              if (!start || !end) return false;
-              const current = parseYMD(date).getTime();
-              return current >= parseYMD(start).getTime()
-                && current <= parseYMD(end).getTime();
-            });
+            const entry = findEntryForDate(date);
             if (entry) {
               setSelected(entry);
               const d = parseYMD(date);

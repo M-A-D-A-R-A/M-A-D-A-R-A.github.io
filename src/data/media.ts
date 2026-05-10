@@ -247,5 +247,173 @@ export const mediaLog: MediaEntry[] = [
     rating: 4,
     notes: ["Drama, Romance, Sci-Fi"],
     opinion: "The best movie i watched in theaters by far this year. (and this was a lot special)"
+  },
+  {
+    id: "20260319-zootopia",
+    date: "2026-03-19",
+    type: "movie",
+    title: "Zootopia",
+    subtitle: "Judy Hopps, Nick Wilde, and one very busy mammal metropolis",
+    year: "2016",
+    genre: "Animation, Action, Adventure",
+    runtime: "108 min",
+    director: "Byron Howard, Rich Moore, Jared Bush",
+    writer: "Byron Howard, Rich Moore, Jared Bush",
+    actors: "Ginnifer Goodwin, Jason Bateman, Idris Elba",
+    plot:
+      "In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together to uncover a conspiracy.",
+    language: "English",
+    country: "United States",
+    awards: "Won 1 Oscar. 49 wins & 75 nominations total",
+    boxOffice: "$341,268,248",
+    imdbRating: "8.0",
+    metascore: "78",
+    ratings: [
+      { source: "Internet Movie Database", value: "8.0/10" },
+      { source: "Rotten Tomatoes", value: "98%" },
+      { source: "Metacritic", value: "78/100" }
+    ],
+    image:
+      "https://m.media-amazon.com/images/M/MV5BOTMyMjEyNzIzMV5BMl5BanBnXkFtZTgwNzIyNjU0NzE@._V1_SX300.jpg",
+    rating: 4,
+    notes: ["Animation, Action, Adventure"],
+    opinion: "Judy >_<"
+  },
+  {
+    id: "20260403-your-lie-in-april",
+    date: "2026-04-03",
+    type: "anime",
+    title: "Your Lie in April",
+    subtitle: "A piano prodigy is pulled back toward music by a violinist with a secret",
+    year: "2014-2015",
+    genre: "Animation, Comedy, Drama",
+    actors: "Natsuki Hanae, Risa Taneda, Ayane Sakura",
+    plot:
+      "A piano prodigy who lost his ability to play after suffering a traumatic event in his childhood is forced back into the spotlight by an eccentric girl with a secret of her own.",
+    language: "Japanese, English, German, Spanish",
+    country: "Japan",
+    awards: "11 wins & 12 nominations total",
+    imdbRating: "8.5",
+    ratings: [{ source: "Internet Movie Database", value: "8.5/10" }],
+    image:
+      "https://m.media-amazon.com/images/M/MV5BZGMyYmFmNzgtMWQ4NS00MWE2LTg4YmEtZGY1MTBiODE0YmE5XkEyXkFqcGc@._V1_SX300.jpg",
+    rating: 4,
+    notes: ["Animation, Comedy, Drama"],
+    opinion: "Its april again, had to watch it"
+  },
+  {
+    id: "20260406-phantoms-in-the-brain",
+    startDate: "2026-04-06",
+    type: "book",
+    title: "Phantoms in the Brain",
+    subtitle: "Probing the Mysteries of the Human Mind",
+    year: "1999",
+    writer: "V. S. Ramachandran, Sandra Blakeslee",
+    image: "https://covers.openlibrary.org/b/id/432813-M.jpg",
+    notes: ["Neuroscience", "Psychology", "Currently reading"],
+    opinion: "Still reading from 6 April."
+  },
+  {
+    id: "20260420-lifespan",
+    startDate: "2026-04-20",
+    type: "book",
+    title: "Lifespan",
+    subtitle: "Why We Age-and Why We Don't Have To",
+    year: "2019",
+    writer: "David A. Sinclair, Matthew D. LaPlante",
+    plot:
+      "A genetics and longevity book arguing that aging can be treated by understanding and activating the body's survival circuits.",
+    language: "English",
+    image:
+      "https://books.google.com/books/content?id=x--oDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    notes: ["Science", "Longevity", "Currently reading"],
+    opinion: "Still reading."
+  },
+  {
+    id: "20260424-project-hail-mary",
+    date: "2026-04-24",
+    type: "movie",
+    title: "Project Hail Mary",
+    subtitle: "Andy Weir's first-contact survival story with Rocky",
+    year: "2026",
+    genre: "Adventure, Comedy, Sci-Fi",
+    runtime: "156 min",
+    director: "Phil Lord, Christopher Miller",
+    writer: "Drew Goddard, Andy Weir",
+    actors: "Ryan Gosling, Sandra Hüller, James Ortiz",
+    plot:
+      "A science teacher wakes up alone on a spaceship. As his memory returns, he uncovers a mission to stop a mysterious substance killing Earth's sun and that an unexpected friendship may be the key.",
+    language: "English",
+    country: "United States",
+    awards: "1 win & 1 nomination total",
+    boxOffice: "$260,744,752",
+    imdbRating: "8.4",
+    metascore: "77",
+    ratings: [
+      { source: "Internet Movie Database", value: "8.4/10" },
+      { source: "Rotten Tomatoes", value: "94%" },
+      { source: "Metacritic", value: "77/100" }
+    ],
+    image:
+      "https://m.media-amazon.com/images/M/MV5BNTkwNzJiYTctNzI3NC00NjE1LTlhYjktY2Q5MTdmMWFmNzcxXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+    rating: 4,
+    notes: ["Adventure, Comedy, Sci-Fi"],
+    opinion: "loved it so much created my own rocky"
+  },
+  {
+    id: "20260427-dev-d",
+    date: "2026-04-27",
+    type: "movie",
+    title: "Dev.D",
+    subtitle: "A messy, modern Devdas spiral",
+    year: "2009",
+    genre: "Comedy, Drama, Romance",
+    runtime: "144 min",
+    director: "Anurag Kashyap",
+    writer: "Sarat Chandra Chattopadhyay, Abhay Deol, Vikramaditya Motwane",
+    actors: "Abhay Deol, Mahie Gill, Kalki Koechlin",
+    plot:
+      "After breaking up with his childhood sweetheart, a young man finds solace in drugs. Meanwhile, a teenage girl is caught in the world of prostitution. Will they be destroyed, or will they find redemption?",
+    language: "Hindi",
+    country: "India",
+    awards: "12 wins & 27 nominations",
+    boxOffice: "$18,613",
+    imdbRating: "7.9",
+    ratings: [{ source: "Internet Movie Database", value: "7.9/10" }],
+    image:
+      "https://m.media-amazon.com/images/M/MV5BZThhZjhiNGItOWM5ZS00ODM2LWI0OWItYWIzYzc1MWQyMzNlXkEyXkFqcGc@._V1_SX300.jpg",
+    rating: 4,
+    notes: ["Comedy, Drama, Romance"],
+    opinion: "should have gone drunk"
+  },
+  {
+    id: "20260428-michael",
+    date: "2026-04-28",
+    type: "movie",
+    title: "Michael",
+    subtitle: "Moonwalk fuel",
+    year: "2026",
+    genre: "Biography, Drama, History",
+    runtime: "127 min",
+    director: "Antoine Fuqua",
+    writer: "John Logan",
+    actors: "Jaafar Jackson, Nia Long, Colman Domingo",
+    plot:
+      "The early life of the famous musician Michael Jackson, known as the King of Pop.",
+    language: "English",
+    country: "United Kingdom, United States",
+    awards: "2 wins & 1 nomination total",
+    boxOffice: "$129,803,832",
+    imdbRating: "7.7",
+    metascore: "39",
+    ratings: [
+      { source: "Internet Movie Database", value: "7.7/10" },
+      { source: "Metacritic", value: "39/100" }
+    ],
+    image:
+      "https://m.media-amazon.com/images/M/MV5BNzllNmRlN2EtMDQyOC00ODJjLTg4OWQtZDNmNGU3YzlkNjc1XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+    rating: 4,
+    notes: ["Biography, Drama, History"],
+    opinion: "i wanna learn moonwalk after this"
   }
 ];

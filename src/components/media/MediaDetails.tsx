@@ -62,14 +62,25 @@ export function MediaDetailsLeft({ entry }: Props) {
         <div className="text-xs text-zinc-400">
           {(() => {
             const start = entry.startDate ?? entry.endDate ?? entry.date;
-            const end = entry.endDate ?? entry.startDate ?? entry.date;
-            if (!start || !end) return null;
+            if (!start) return null;
             const formatter = new Intl.DateTimeFormat("en-GB", {
               year: "numeric",
               month: "long",
               day: "numeric",
             });
             const startLabel = formatter.format(parseYMD(start));
+
+            if (entry.type === "book" && entry.startDate && !entry.endDate) {
+              return (
+                <div className="flex flex-col gap-1">
+                  <span>Start: {startLabel}</span>
+                  <span>Still reading</span>
+                </div>
+              );
+            }
+
+            const end = entry.endDate ?? entry.startDate ?? entry.date;
+            if (!end) return null;
             const endLabel = formatter.format(parseYMD(end));
 
             if (start === end) {

@@ -29,12 +29,14 @@ type Props = {
 
 export default function MediaHeatmap({ entries, onSelectDate }: Props) {
   const today = new Date();
+  const todayKey = formatYMD(today);
   const [year, setYear] = useState(today.getFullYear());
 
   /* group entries by date */
   const byDate = entries.reduce<Record<string, MediaEntry[]>>((acc, entry) => {
     const start = entry.startDate ?? entry.endDate ?? entry.date;
-    const end = entry.endDate ?? entry.startDate ?? entry.date;
+    const isOngoingBook = entry.type === "book" && entry.startDate && !entry.endDate;
+    const end = entry.endDate ?? (isOngoingBook ? todayKey : entry.startDate ?? entry.date);
     if (!start || !end) return acc;
     const startDate = parseYMD(start);
     const endDate = parseYMD(end);
@@ -58,18 +60,20 @@ export default function MediaHeatmap({ entries, onSelectDate }: Props) {
   for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
     const dateKey = formatYMD(d);
     const items = byDate[dateKey] || [];
+    const hasEntries = items.length > 0;
 
     const maxRating = Math.max(...items.map(i => i.rating ?? 0), 0);
     const heatClass = maxRating
       ? `heat-r-${maxRating}`
-      : "heat-empty";
+      : hasEntries
+        ? "heat-active"
+        : "heat-empty";
 
     const isToday =
       d.getFullYear() === today.getFullYear() &&
       d.getMonth() === today.getMonth() &&
       d.getDate() === today.getDate();
 
-    const hasEntries = items.length > 0;
     const overlapCount = items.length;
 
     /* month label at first week column of the month */
@@ -192,6 +196,8 @@ export default function MediaHeatmap({ entries, onSelectDate }: Props) {
             />
           ))}
           <span>1 → 5</span>
+          <span className="ml-3 w-3 h-3 rounded-sm heat-active" />
+          <span>Unrated / reading</span>
         </div>
       </div>
     </div>
