@@ -8,6 +8,12 @@ export interface TIL {
 
 export const tilItems: TIL[] = [
   {
+    date: "2026-05-20",
+    title: "Clone http.Client for Long-Lived SSE",
+    description:
+      "For a Go CLI that normally uses a timeout-bound http.Client, clone the client and set Timeout = 0 only for Server-Sent Events so streaming commands do not break normal request safety.",
+  },
+  {
     date: "2026-05-04",
     title: "The Uncanny Valley of Silence",
     description:

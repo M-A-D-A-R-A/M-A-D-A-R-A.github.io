@@ -14,8 +14,8 @@ export const portfolioData: Portfolio[] = [
     description:
       "A small startup/business experiment for recurring communities. Built and tested it with 3 real communities and roughly 12-20 monthly members, covering public community pages, session booking, OTP verification, direct UPI payments, organizer operations, attendance tracking, and projections.",
     technologies: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Supabase"],
-    projectUrl: "https://passco.site/",
-    status: "current",
+    projectUrl: "https://passco-madaras-projects-f47de063.vercel.app/",
+    status: "archived",
   },
   {
     title: "Vigil",
