@@ -25,6 +25,21 @@ export function NewsEntry({ news }: { news: News }) {
           )}
         </h3>
         <p className="text-sm text-zinc-600">{news.description}</p>
+        {news.stats && (
+          <div className="mt-3 flex flex-wrap gap-3 text-xs text-zinc-500">
+            {news.stats.map((stat) => (
+              <a
+                key={stat.href}
+                href={stat.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-900 hover:decoration-zinc-900"
+              >
+                {stat.label}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

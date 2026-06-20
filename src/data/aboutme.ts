@@ -1,6 +1,9 @@
 export interface AboutMe {
   name: string;
   title: string;
+  currentRole?: string;
+  currentCompany?: string;
+  currentCompanyUrl?: string;
   institution: string;
   description: string;
   email: string;
@@ -21,6 +24,9 @@ export interface AboutMe {
 export const aboutMe: AboutMe = {
   name: "Nishant Andoriya",
   title: "Developer / Tinkerer",
+  currentRole: "Co-founder",
+  currentCompany: "Packtly",
+  currentCompanyUrl: "https://packtly.dev/",
   institution: "IIIT Vadodara",
   // Note that links work in the description
   description:

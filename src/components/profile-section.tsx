@@ -41,20 +41,26 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             {aboutMe.altName}
           </p>
         )}
-        <p className="text-zinc-600 text-xs leading-relaxed tracking-wide uppercase mb-6">
-          {aboutMe.title}
-          <br />
-          {aboutMe.institutionUrl ? (
-            <a
-              href={aboutMe.institutionUrl}
-              className="hover:text-zinc-900 transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {aboutMe.institution}
-            </a>
-          ) : (
-            aboutMe.institution
+        <p className="text-zinc-600 text-xs leading-relaxed tracking-wide mb-6">
+          <span className="uppercase">{aboutMe.title}</span>
+          {aboutMe.currentRole && (
+            <>
+              <br />
+              {aboutMe.currentRole}
+              {aboutMe.currentCompany && ", "}
+              {aboutMe.currentCompanyUrl ? (
+                <a
+                  href={aboutMe.currentCompanyUrl}
+                  className="font-semibold text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors duration-300 hover:decoration-zinc-900"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {aboutMe.currentCompany}
+                </a>
+              ) : (
+                aboutMe.currentCompany
+              )}
+            </>
           )}
         </p>
         <div className="space-y-2">

@@ -10,12 +10,12 @@ export interface Portfolio {
 
 export const portfolioData: Portfolio[] = [
   {
-    title: "Passco",
+    title: "Packtly",
     description:
-      "A small startup/business experiment for recurring communities. Built and tested it with 3 real communities and roughly 12-20 monthly members, covering public community pages, session booking, OTP verification, direct UPI payments, organizer operations, attendance tracking, and projections.",
-    technologies: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Supabase"],
-    projectUrl: "https://passco-madaras-projects-f47de063.vercel.app/",
-    status: "archived",
+      "The evidence layer for the AI debugging era. Packtly turns agent runs, logs, traces, and fixes into reviewable packets so teams can trust what changed and why.",
+    technologies: ["AI Debugging", "Evidence", "Developer Tools"],
+    projectUrl: "https://packtly.dev/",
+    status: "current",
   },
   {
     title: "Vigil",

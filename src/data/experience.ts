@@ -10,6 +10,14 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
+    date: "2026- Present",
+    title: "Co-founder",
+    company: "Packtly",
+    description:
+      "Building the evidence layer for the AI debugging era, helping teams package agent runs, logs, traces, and fixes into reviewable debugging evidence.",
+    companyUrl: "https://packtly.dev/",
+  },
+  {
     date: "June 2023- Present",
     title: "Application Developer 2",
     company: "Oracle",

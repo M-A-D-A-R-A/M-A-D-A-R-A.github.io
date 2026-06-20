@@ -7,10 +7,10 @@ import { newsData } from "@/data/news";
 
 const featuredProjects = [
   {
-    title: "Passco",
-    href: "https://passco.site/",
+    title: "Packtly",
+    href: "https://packtly.dev/",
     description:
-      "Community memberships, booking, OTP verification, UPI payments, and organizer tools for small recurring groups.",
+      "The evidence layer for the AI debugging era, turning agent runs, logs, traces, and fixes into reviewable packets.",
   },
   {
     title: "Vigil",
@@ -43,6 +43,20 @@ export default function Home() {
                 <p className="font-serif text-sm leading-relaxed text-zinc-700">
                   {aboutMe.description}
                 </p>
+              </section>
+            )}
+
+            {newsData.length > 0 && (
+              <section>
+                <h2 className="font-serif text-sm mb-4 tracking-wide uppercase">
+                  Open Source Contributions
+                </h2>
+                <hr />
+                <div className="space-y-8">
+                  {newsData.map((news, index) => (
+                    <NewsEntry key={index} news={news} />
+                  ))}
+                </div>
               </section>
             )}
 
@@ -81,20 +95,6 @@ export default function Home() {
                 <div className="space-y-8">
                   {experienceData.map((experience, index) => (
                     <ExperienceEntry key={index} experience={experience} />
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {newsData.length > 0 && (
-              <section>
-                <h2 className="font-serif text-sm mb-4 tracking-wide uppercase">
-                  Open Source Contributions
-                </h2>
-                <hr />
-                <div className="space-y-8">
-                  {newsData.map((news, index) => (
-                    <NewsEntry key={index} news={news} />
                   ))}
                 </div>
               </section>
