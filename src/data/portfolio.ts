@@ -10,6 +10,14 @@ export interface Portfolio {
 
 export const portfolioData: Portfolio[] = [
   {
+    title: "Axiomotion",
+    description:
+      "An interactive web experience exploring motion and ideas through a focused digital interface.",
+    technologies: ["Web Experience", "Motion Design"],
+    projectUrl: "https://axiomotion.andoriyanishant.com/",
+    status: "current",
+  },
+  {
     title: "Packtly",
     description:
       "The evidence layer for the AI debugging era. Packtly turns agent runs, logs, traces, and fixes into reviewable packets so teams can trust what changed and why.",
