@@ -19,10 +19,10 @@ const featuredProjects = [
       "A local-first observability box for logs, traces, metrics, and cost summaries across side projects.",
   },
   {
-    title: "Rocky Relay",
-    href: "https://github.com/M-A-D-A-R-A/rocky-relay",
+    title: "Axiomotion",
+    href: "https://axiomotion.andoriyanishant.com/",
     description:
-      "A low-latency voice assistant experiment with STT, local LLMs, persona transforms, and swappable TTS.",
+      "An interactive web experience exploring motion and ideas through a focused digital interface.",
   },
 ];
 
