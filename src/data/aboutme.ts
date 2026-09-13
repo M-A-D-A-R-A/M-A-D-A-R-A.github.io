@@ -24,9 +24,7 @@ export interface AboutMe {
 export const aboutMe: AboutMe = {
   name: "Nishant Andoriya",
   title: "Developer / Tinkerer",
-  currentRole: "Co-founder",
-  currentCompany: "Packtly",
-  currentCompanyUrl: "https://packtly.dev/",
+  currentRole: "Building Packtly — the evidence layer for AI debugging.",
   institution: "IIIT Vadodara",
   // Note that links work in the description
   description:

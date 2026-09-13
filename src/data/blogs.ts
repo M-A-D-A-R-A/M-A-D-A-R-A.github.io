@@ -9,6 +9,14 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Local LLMs on a Base M5 MacBook Pro: Qwen3 8B Q8 vs 14B Q4",
+    description:
+      "A llama.cpp benchmark of Qwen3 8B Q8 and 14B Q4 on a 16GB base M5 MacBook Pro, covering throughput, memory pressure, and the practical local-model tradeoff.",
+    date: "2026-09-13",
+    tags: ["Local LLMs", "Qwen3", "llama.cpp", "Apple Silicon", "Benchmark"],
+    count: 1208,
+  },
+  {
     title: "The Movies & the World Beyond Screen",
     description: "A personal diary-meets-critic essay tracing Bollywood’s timeline and the global films that shaped my taste.",
     date: "2026-03-16",

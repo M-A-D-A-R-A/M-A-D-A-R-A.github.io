@@ -7,22 +7,31 @@ import { newsData } from "@/data/news";
 
 const featuredProjects = [
   {
-    title: "Packtly",
-    href: "https://packtly.dev/",
-    description:
-      "The evidence layer for the AI debugging era, turning agent runs, logs, traces, and fixes into reviewable packets.",
-  },
-  {
     title: "Vigil",
     href: "https://github.com/M-A-D-A-R-A/Vigil",
     description:
       "A local-first observability box for logs, traces, metrics, and cost summaries across side projects.",
   },
   {
+    title: "Rocky Relay",
+    href: "https://github.com/M-A-D-A-R-A/rocky-relay",
+    description:
+      "A low-latency voice assistant experiment with STT, local LLMs, persona transforms, and swappable TTS.",
+  },
+];
+
+const entrepreneurshipProjects = [
+  {
+    title: "Packtly",
+    href: "https://packtly.dev/",
+    description:
+      "Currently building the evidence layer for the AI debugging era. Packtly is preparing for a private beta with CTO and customer-success teams.",
+  },
+  {
     title: "Axiomotion",
     href: "https://axiomotion.andoriyanishant.com/",
     description:
-      "An interactive web experience exploring motion and ideas through a focused digital interface.",
+      "An interactive web experience for nonprofits, piloting with 5,000 students next month.",
   },
 ];
 
@@ -43,6 +52,46 @@ export default function Home() {
                 <p className="font-serif text-sm leading-relaxed text-zinc-700">
                   {aboutMe.description}
                 </p>
+              </section>
+            )}
+
+            <section>
+              <h2 className="font-serif text-sm mb-4 tracking-wide uppercase">
+                Entrepreneurship
+              </h2>
+              <hr />
+              <div className="space-y-6">
+                {entrepreneurshipProjects.map((project) => (
+                  <div key={project.title}>
+                    <h3 className="font-serif text-base mb-2">
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-zinc-600 transition-colors duration-300"
+                      >
+                        {project.title}
+                      </a>
+                    </h3>
+                    <p className="text-sm leading-relaxed text-zinc-600">
+                      {project.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {experienceData.length > 0 && (
+              <section>
+                <h2 className="font-serif text-sm mb-4 tracking-wide uppercase">
+                  Experience
+                </h2>
+                <hr />
+                <div className="space-y-8">
+                  {experienceData.map((experience, index) => (
+                    <ExperienceEntry key={index} experience={experience} />
+                  ))}
+                </div>
               </section>
             )}
 
@@ -85,20 +134,6 @@ export default function Home() {
                 ))}
               </div>
             </section>
-
-            {experienceData.length > 0 && (
-              <section>
-                <h2 className="font-serif text-sm mb-4 tracking-wide uppercase">
-                  Experience
-                </h2>
-                <hr />
-                <div className="space-y-8">
-                  {experienceData.map((experience, index) => (
-                    <ExperienceEntry key={index} experience={experience} />
-                  ))}
-                </div>
-              </section>
-            )}
           </div>
         </div>
       </div>

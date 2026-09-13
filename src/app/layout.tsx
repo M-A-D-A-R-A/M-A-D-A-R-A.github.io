@@ -74,6 +74,12 @@ export default function RootLayout({
               >
                 Letterboxd
               </Link>
+              <Link
+                href="/uses"
+                className="rounded-full border border-zinc-200 px-3 py-1.5 hover:border-zinc-400 hover:text-zinc-900 transition-colors"
+              >
+                Uses
+              </Link>
               {aboutMe.cvUrl && (
                 <a
                   href={aboutMe.cvUrl}

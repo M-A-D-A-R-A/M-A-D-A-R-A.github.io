@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Local LLMs on a Base M5 MacBook Pro: Qwen3 8B Q8 vs 14B Q4 | Nishant Andoriya</title>
+  <meta name="description" content="A llama.cpp benchmark of Qwen3 8B Q8 and 14B Q4 on a base M5 MacBook Pro with 16GB unified memory." />
+  <link rel="stylesheet" href="https://latex.vercel.app/style.css" />
+  <link rel="stylesheet" href="/blogs/blog.css" />
+  <style>
+    .screenshot-thumb { display: block; width: min(100%, 520px); height: auto; border-radius: 6px; }
+    table { width: 100%; }
+    code { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="blog-shell">
+      <nav class="post-nav" aria-label="Post navigation">
+        <a href="/blogs">← All posts</a>
+        <a href="/">Home</a>
+      </nav>
+      <h1>Local LLMs on a Base M5 MacBook Pro: Qwen3 8B Q8 vs 14B Q4</h1>
+      <p class="post-meta">Published on Sep 13, 2026</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p>I recently switched to a 14-inch MacBook Pro with the base Apple M5: a 10-core CPU, 10-core GPU, 16GB unified memory, and a 1TB SSD.</p>
+      <p>I wanted to use it for more than normal development. The plan is to run local models for private work, quick coding help, research reading, and experiments, while still keeping a cloud model available for difficult multi-file work.</p>
+      <p>The obvious constraint is memory. On Apple Silicon, the CPU and GPU share the same 16GB unified memory.
+        <label for="sn-local-llms-memory" class="sidenote-toggle"></label>
+        <input type="checkbox" id="sn-local-llms-memory" class="sidenote-toggle" />
+        <span class="sidenote right">That same memory pool also needs to leave room for macOS, an editor, a browser, and the model’s context cache.</span>
+        There is no separate VRAM pool that I can casually fill with a model while everything else remains untouched.
+      </p>
+      <p>Before building a Pi-based coding harness or automating model routing, I wanted a clean answer to a basic question:</p>
+      <blockquote><p>Which local model gives me the best usable quality-versus-speed tradeoff on this specific machine?</p></blockquote>
+      <p>This is a baseline <code>llama.cpp</code> benchmark of two Qwen3 GGUF models.</p>
+
+      <h2>The two models</h2>
+      <p>I chose two models that are surprisingly close in file size:</p>
+      <table>
+        <thead><tr><th>Model</th><th>Quantization</th><th>GGUF size</th><th>Intended role</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3 8B</td><td>Q8_0</td><td>~8.70 GB</td><td>Faster local assistant</td></tr>
+          <tr><td>Qwen3 14B</td><td>Q4_K_M</td><td>~9.00 GB</td><td>Better local reasoning/coding</td></tr>
+        </tbody>
+      </table>
+      <p>The tradeoff is interesting. Qwen3 8B Q8 stores the smaller model at higher precision. Qwen3 14B Q4 stores more parameters, but each at lower precision. On a 16GB machine, both are “heavy” enough that I should run only one model at a time.</p>
+
+      <h2>Runtime and benchmark configuration</h2>
+      <p>I used <code>llama.cpp</code> with Metal acceleration. The important settings were:</p>
+      <pre><code>-ngl 999      # offload all possible layers to Metal/GPU
+-fa on        # Flash Attention
+-ctk q8_0     # Q8 KV cache keys
+-ctv q8_0     # Q8 KV cache values
+-t 4          # generation CPU threads
+-b 1024       # logical batch size
+-ub 256       # physical micro-batch size
+-r 3          # three benchmark repetitions</code></pre>
+      <p>The benchmark used:</p>
+      <pre><code>llama-bench \
+  -hf ggml-org/Qwen3-8B-GGUF:Q8_0 \
+  -hf ggml-org/Qwen3-14B-GGUF:Q4_K_M \
+  -p 512 \
+  -n 256 \
+  -b 1024 \
+  -ub 256 \
+  -ctk q8_0 \
+  -ctv q8_0 \
+  -ngl 999 \
+  -fa on \
+  -t 4 \
+  -r 3</code></pre>
+      <p>The test measures two different parts of inference:</p>
+      <ul>
+        <li><code>pp512</code>: how quickly the model reads/processes a 512-token prompt.</li>
+        <li><code>tg256</code>: how quickly it generates 256 new tokens.</li>
+      </ul>
+      <p>Prompt processing matters when sending code, logs, documentation, or a large context window. Generation speed matters when the model is writing an explanation, patch, or implementation.</p>
+
+      <h2>Results</h2>
+      <table>
+        <thead><tr><th>Metric</th><th>Qwen3 8B Q8_0</th><th>Qwen3 14B Q4_K_M</th></tr></thead>
+        <tbody>
+          <tr><td>Prompt processing, 512 tokens</td><td><strong>711.54 tok/s</strong></td><td><strong>359.71 tok/s</strong></td></tr>
+          <tr><td>Text generation, 256 tokens</td><td><strong>16.13 tok/s</strong></td><td><strong>14.44 tok/s</strong></td></tr>
+          <tr><td>Model size</td><td>~8.70 GB</td><td>~9.00 GB</td></tr>
+          <tr><td>GPU offload</td><td>Metal, all layers</td><td>Metal, all layers</td></tr>
+          <tr><td>CPU threads</td><td>4</td><td>4</td></tr>
+          <tr><td>KV cache</td><td>Q8_0</td><td>Q8_0</td></tr>
+        </tbody>
+      </table>
+      <p>The first result is clear: the 8B Q8 model processes prompts almost twice as fast.
+        <label for="sn-local-llms-throughput" class="sidenote-toggle"></label>
+        <input type="checkbox" id="sn-local-llms-throughput" class="sidenote-toggle" />
+        <span class="sidenote left">The prompt-processing gap is much larger than the generation-speed gap, which matters most for code, logs, and other long inputs.</span>
+      </p>
+      <p>That matters more than I expected. If I am pasting a file, reviewing logs, or asking the model to understand an existing function, Qwen3 8B Q8 gets to generation much sooner.</p>
+      <p>The generation gap is smaller:</p>
+      <ul><li>Qwen3 8B Q8: <strong>16.13 tokens/second</strong></li><li>Qwen3 14B Q4: <strong>14.44 tokens/second</strong></li></ul>
+      <p>So the 14B Q4 model is only around 1.7 tokens/second slower while fitting into roughly the same model-size budget. For a deliberate coding task, that seems like a reasonable price if it produces better answers.</p>
+
+      <h2>A real server request</h2>
+      <p>I also ran Qwen3 8B Q8 through <code>llama serve</code> with an 8K context window and one active slot:</p>
+      <pre><code>llama serve \
+  -hf ggml-org/Qwen3-8B-GGUF:Q8_0 \
+  -ngl 999 \
+  -fa on \
+  -c 8192 \
+  -b 1024 \
+  -ub 256 \
+  -t 4 \
+  -tb 6 \
+  --parallel 1 \
+  --perf \
+  --host 127.0.0.1 \
+  --port 8080</code></pre>
+      <p>On a 256-token generation run, it sustained <strong>16.25 tok/s</strong>, which is almost identical to the synthetic benchmark result.</p>
+      <p>That is useful confirmation: the benchmark is not wildly optimistic. On this M5, Qwen3 8B Q8 really does generate at around 16 tokens per second in a local server setup.</p>
+
+      <h2>Memory and swap</h2>
+      <p>The more important result was memory behaviour. During two clean single-model runs, Activity Monitor showed:</p>
+      <table>
+        <thead><tr><th>Memory metric</th><th>Observation</th></tr></thead>
+        <tbody>
+          <tr><td>Physical memory</td><td>16 GB</td></tr>
+          <tr><td>Memory used</td><td>~13.26–13.71 GB</td></tr>
+          <tr><td>Compressed memory</td><td>~388.9–498.3 MB</td></tr>
+          <tr><td>Swap used</td><td>0–256 KB</td></tr>
+          <tr><td>Memory pressure</td><td>Green</td></tr>
+        </tbody>
+      </table>
+      <p>This looks close to the limit, because it is. But the key signal is not simply “memory used.”
+        <label for="sn-local-llms-pressure" class="sidenote-toggle"></label>
+        <input type="checkbox" id="sn-local-llms-pressure" class="sidenote-toggle" />
+        <span class="sidenote right">
+          <img class="screenshot-thumb" src="/assets/images/local-llms/memory-pressure-zero-swap.png" alt="Activity Monitor showing green memory pressure and zero swap used" />
+          <small>One clean run: green memory pressure and zero swap.</small>
+        </span>
+        macOS uses available memory aggressively for caching and compression.
+      </p>
+      <p>What I care about is:</p>
+      <ul><li>Is memory pressure green?</li><li>Is swap near zero?</li><li>Does the laptop remain responsive?</li><li>Does the model maintain stable generation speed?</li></ul>
+      <p>For this run, the answer was yes.
+        <label for="sn-local-llms-second-run" class="sidenote-toggle"></label>
+        <input type="checkbox" id="sn-local-llms-second-run" class="sidenote-toggle" />
+        <span class="sidenote left">
+          <img class="screenshot-thumb" src="/assets/images/local-llms/memory-pressure-256kb-swap.png" alt="Activity Monitor showing green memory pressure and 256 KB of swap used" />
+          <small>Another clean run: memory pressure remains green with only 256 KB of swap.</small>
+        </span>
+      </p>
+      <p>Earlier, I tried too many parallel slots with unnecessarily large context windows. That produced heavy swapping and made the system feel bad. The lesson was simple: 16GB is enough for one serious local model session, not for pretending I own a multi-user inference server.</p>
+
+      <h2>Current conclusion</h2>
+      <p>For daily local work, I will use both models differently:</p>
+      <table>
+        <thead><tr><th>Use case</th><th>Model</th></tr></thead>
+        <tbody>
+          <tr><td>Quick explanations, logs, small files, private notes</td><td>Qwen3 8B Q8_0</td></tr>
+          <tr><td>More deliberate local coding, review, or reasoning</td><td>Qwen3 14B Q4_K_M</td></tr>
+          <tr><td>Multi-file changes, difficult debugging, long agent loops</td><td>Cloud model / Codex</td></tr>
+        </tbody>
+      </table>
+      <p>I am not claiming the 14B model is better yet. Throughput does not measure code quality. A model can be slower, use more memory, and still be worse at a specific coding task.</p>
+      <p>This benchmark only tells me that both models can run locally on the base M5 without active swap pressure, and that Qwen3 8B Q8 is meaningfully faster at prompt ingestion.</p>
+
+      <h2>Model routing</h2>
+      <p>The end goal is not to automate everything blindly. It is to build a workflow where the model choice is visible and useful:</p>
+      <pre><code>Route: Qwen3 14B Q4
+Reason: local coding review, 3 files, estimated 6K context
+Override: qwen8 | qwen14 | codex</code></pre>
+      <p>I also want to log those decisions: task type, chosen model, latency, token usage, test result, and manual rating, so I can later see whether automatic switching actually improves the workflow.</p>
+      
+    </article>
+    <hr />
+    <footer class="post-footer">
+      <small>Tags</small>
+      <ul class="tags" aria-label="Post tags">
+        <li class="tag"><span>Local LLMs</span></li>
+        <li class="tag"><span>Qwen3</span></li>
+        <li class="tag"><span>llama.cpp</span></li>
+        <li class="tag"><span>Apple Silicon</span></li>
+        <li class="tag"><span>Benchmark</span></li>
+      </ul>
+    </footer>
+  </main>
+</body>
+</html>
