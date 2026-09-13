@@ -37,21 +37,21 @@
       </p>
       <p>Before building a Pi-based coding harness or automating model routing, I wanted a clean answer to a basic question:</p>
       <blockquote><p>Which local model gives me the best usable quality-versus-speed tradeoff on this specific machine?</p></blockquote>
-      <p>This is a baseline <code>llama.cpp</code> benchmark of two Qwen3 GGUF models.</p>
+      <p>This is a baseline <a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener noreferrer">llama.cpp</a> benchmark of two Qwen3 GGUF models.</p>
 
       <h2>The two models</h2>
       <p>I chose two models that are surprisingly close in file size:</p>
       <table>
         <thead><tr><th>Model</th><th>Quantization</th><th>GGUF size</th><th>Intended role</th></tr></thead>
         <tbody>
-          <tr><td>Qwen3 8B</td><td>Q8_0</td><td>~8.70 GB</td><td>Faster local assistant</td></tr>
-          <tr><td>Qwen3 14B</td><td>Q4_K_M</td><td>~9.00 GB</td><td>Better local reasoning/coding</td></tr>
+          <tr><td><a href="https://huggingface.co/ggml-org/Qwen3-8B-GGUF" target="_blank" rel="noopener noreferrer">Qwen3 8B</a></td><td>Q8_0</td><td>~8.70 GB</td><td>Faster local assistant</td></tr>
+          <tr><td><a href="https://huggingface.co/ggml-org/Qwen3-14B-GGUF" target="_blank" rel="noopener noreferrer">Qwen3 14B</a></td><td>Q4_K_M</td><td>~9.00 GB</td><td>Better local reasoning/coding</td></tr>
         </tbody>
       </table>
       <p>The tradeoff is interesting. Qwen3 8B Q8 stores the smaller model at higher precision. Qwen3 14B Q4 stores more parameters, but each at lower precision. On a 16GB machine, both are “heavy” enough that I should run only one model at a time.</p>
 
       <h2>Runtime and benchmark configuration</h2>
-      <p>I used <code>llama.cpp</code> with Metal acceleration. The important settings were:</p>
+      <p>I used <a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener noreferrer">llama.cpp</a> with Metal acceleration. The important settings were:</p>
       <pre><code>-ngl 999      # offload all possible layers to Metal/GPU
 -fa on        # Flash Attention
 -ctk q8_0     # Q8 KV cache keys
@@ -166,6 +166,7 @@
       </table>
       <p>I am not claiming the 14B model is better yet. Throughput does not measure code quality. A model can be slower, use more memory, and still be worse at a specific coding task.</p>
       <p>This benchmark only tells me that both models can run locally on the base M5 without active swap pressure, and that Qwen3 8B Q8 is meaningfully faster at prompt ingestion.</p>
+      <p>One unresolved part of the setup is the cloud fallback. I am still deciding between <a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">OpenRouter Go</a> and a Codex Go subscription for difficult multi-file work and longer agent loops. The local models cover smaller and private tasks; the cloud option needs to be the reliable escalation path when the task grows.</p>
 
       <h2>Model routing</h2>
       <p>The end goal is not to automate everything blindly. It is to build a workflow where the model choice is visible and useful:</p>
@@ -184,6 +185,8 @@ Override: qwen8 | qwen14 | codex</code></pre>
         <li class="tag"><span>llama.cpp</span></li>
         <li class="tag"><span>Apple Silicon</span></li>
         <li class="tag"><span>Benchmark</span></li>
+        <li class="tag"><span>OpenRouter</span></li>
+        <li class="tag"><span>Codex</span></li>
       </ul>
     </footer>
   </main>
