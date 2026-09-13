@@ -4,8 +4,6 @@ type Item = {
   name: string;
   description: string;
   href?: string;
-  secondaryHref?: string;
-  secondaryLabel?: string;
 };
 
 const sections: { title: string; items: Item[] }[] = [
@@ -21,8 +19,6 @@ const sections: { title: string; items: Item[] }[] = [
         name: "iTerm2",
         description: "My macOS terminal emulator, with tmux integration.",
         href: "https://iterm2.com/",
-        secondaryHref: "https://iterm.aashutosh.dev/",
-        secondaryLabel: "My config",
       },
       {
         name: "Pi",
@@ -138,19 +134,6 @@ export default function UsesPage() {
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-zinc-600">
                       {item.description}
-                      {item.secondaryHref && item.secondaryLabel ? (
-                        <>
-                          {" "}
-                          <a
-                            href={item.secondaryHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900"
-                          >
-                            {item.secondaryLabel} ↗
-                          </a>
-                        </>
-                      ) : null}
                     </p>
                   </li>
                 ))}
